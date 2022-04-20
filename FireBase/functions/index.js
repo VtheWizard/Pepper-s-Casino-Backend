@@ -1,9 +1,26 @@
 const functions = require("firebase-functions");
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+
+// trying out some tutorial's functions
+exports.randomNumber = functions.https.onRequest((request, response) => {
+    const number = Math.round(Math.random() *100);
+    console.log(number);
+    response.send(number.toString());
+});
+
+//firestore trigger for tracking activity
+exports.logActivities = functions.firestore.document('/{games}/{id}')
+    .onCreate((snap, context) => {
+        //laksjdföaklj
+        console.log(snap.data());
+        const games = context.params.game;
+        const id = context.params.id;
+
+        const activities = admin.firestore.collection('activities');
+
+        if (games === 'games'){
+            return activities.add({text: 'NEW GAME WAS MADE'});
+
+        }
+        
+    })
