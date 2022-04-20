@@ -22,5 +22,5 @@ exports.logActivities = functions.firestore.document('/{games}/{id}')
             return activities.add({text: 'NEW GAME WAS MADE'});
 
         }
-        
+        return null;
     })
