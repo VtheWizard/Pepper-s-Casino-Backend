@@ -11,11 +11,10 @@ exports.randomNumber = functions.https.onRequest((request, response) => {
 //firestore trigger for tracking activity
 exports.logActivities = functions.firestore.document('/{games}/{id}')
     .onCreate((snap, context) => {
-        //laksjdföaklj
+        //console.log() creates a log entry
         console.log(snap.data());
         const games = context.params.game;
         const id = context.params.id;
-
         const activities = admin.firestore.collection('activities');
 
         if (games === 'games'){
